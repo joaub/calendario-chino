@@ -1,9 +1,44 @@
-import React from 'react'
-import { ciclo} from "./ciclo.js"
+import React, { useState } from 'react'
+
 import './App.css'
 
 function App() {
-  
+  const [yearInput, setInputYear] = useState("1984");
+  const elementos = ["Madera", "Fuego", "Tierra", "Metal", "Agua"]
+
+  const animales = [
+    "Rata",
+    "Buey",
+    "Tigre",
+    "Conejo",
+    "Dragón",
+    "Serpiente",
+    "Caballo",
+    "Cabra",
+    "Mono",
+    "Gallo",
+    "Perro",
+    "Cerdo"]
+
+
+  function getYearSexagenary(year) {
+    const base = "1984"//inicio madera rata
+    let cicloAnimal = (year - base) % 12;
+    let cicloElemento = Math.floor((year - base) % 10 / 2);
+    return {
+      animal: animales[cicloAnimal],
+      elemento: elementos[cicloElemento]
+    }
+  }
+
+  // Validar input numérico
+  const parseYear = (value) => {
+    const parsed = Number(value);
+    return Number.isInteger(parsed) ? parsed : null;
+  };
+
+  const year = parseYear(yearInput);
+  const result = year === null ? null : getYearSexagenary(year);
 
   return (
     <>
@@ -11,12 +46,31 @@ function App() {
       <p>Bienvenido a la aplicación del Calendario Chino.</p>
 
       <p>Selecciona un año para ver su correspondiente animal y elemento.</p>
-      
-      <input type="number" placeholder="Ingresa un año"  />
-      
-      <button onClick={ciclo()}>Calcular</button>
 
-      
+      <div>
+        <input value={yearInput} onChange={(e) => setInputYear(e.target.value)} inputMode="numeric" placeholder="Ej: 2025" />
+
+        <button onClick={() => setInputYear(String(new Date().getFullYear()))}>
+          Año actual
+        </button>
+      </div>
+
+      {result ? (
+        <div>
+
+          <p >
+            <span >{year}</span> →{' '}
+            <span >{result.elemento} {result.animal}</span>
+          </p>
+          
+          <div >
+            <p ><strong>Elementos (orden):</strong> {elementos.join(', ')}</p>
+            <p><strong>Animales (orden):</strong> {animales.join(', ')}</p>
+          </div>
+        </div>
+      ) : (
+        <p>Introduce un año válido (número entero).</p>
+      )}
     </>
   )
 }
