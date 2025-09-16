@@ -4,6 +4,8 @@ import './App.css'
 
 function App() {
   const [yearInput, setInputYear] = useState("1984");
+  const [yearConfirmed, setYearConfirmed] = useState(null);
+
   const elementos = ["Madera", "Fuego", "Tierra", "Metal", "Agua"]
 
   const animales = [
@@ -38,7 +40,8 @@ function App() {
   };
 
   const year = parseYear(yearInput);
-  const result = year === null ? null : getYearSexagenary(year);
+  const confirmedResult =
+    yearConfirmed !== null ? getYearSexagenary(yearConfirmed) : null;
 
   return (
     <>
@@ -50,17 +53,24 @@ function App() {
       <div>
         <input value={yearInput} onChange={(e) => setInputYear(e.target.value)} inputMode="numeric" placeholder="Ej: 2025" />
 
-        <button onClick={() => setInputYear(String(new Date().getFullYear()))}>
-          Año actual
+        <button onClick={() => {
+            const parsed = parseYear(yearInput);
+            if (parsed !== null) {
+              setYearConfirmed(parsed);
+            } else {
+              setYearConfirmed(null);
+            }
+          }}>
+          calcular
         </button>
       </div>
 
-      {result ? (
+      {confirmedResult ? (
         <div>
 
           <p >
             <span >{year}</span> →{' '}
-            <span >{result.elemento} {result.animal}</span>
+            <span >{confirmedResult.elemento} {confirmedResult.animal}</span>
           </p>
           
           <div >
