@@ -22,6 +22,21 @@ function App() {
     "Perro",
     "Cerdo"]
 
+  const animalEmojis = {
+  Rata: "🐀",
+  Buey: "🐂",
+  Tigre: "🐅",
+  Conejo: "🐇",
+  Dragón: "🐉",
+  Serpiente: "🐍",
+  Caballo: "🐎",
+  Cabra: "🐐",
+  Mono: "🐒",
+  Gallo: "🐓",
+  Perro: "🐕",
+  Cerdo: "🐖",
+};  
+
 
   function getYearSexagenary(year) {
     const base = "1084"//inicio madera rata
@@ -52,7 +67,7 @@ function App() {
       
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 p-4">Ciclo Sexagenario - Calendario Chino</h1>
 
-      <section className='p-5'>
+      <section className='p-4'>
       <p className="text-center text-lg sm:text-xl mb-2">
         Bienvenido a la aplicación del Calendario Chino.
       </p>
@@ -99,6 +114,7 @@ function App() {
             <span className="font-semibold">{yearConfirmed}</span> →{" "}
             <span className="font-bold">
               {confirmedResult.elemento} {confirmedResult.animal}
+              <span className="text-2xl">{animalEmojis[confirmedResult.animal]}</span>
             </span>
           </p>
 
