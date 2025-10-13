@@ -74,12 +74,17 @@ function App() {
 
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 p-4">Ciclo Sexagenario - Calendario Chino</h1>
 
-        <section className='p-4'>
-          <p className="text-center text-lg sm:text-xl mb-2">
-            Bienvenido a la aplicación del Calendario Chino.
+        <section className='p-4 max-w-2xl mx-auto text-center text-gray-800 space-y-3'>
+          <p className='text-sm sm:text-base'>
+            El calendario chino combina un ciclo de <strong>12 animales</strong> con
+            <strong> 5 elementos </strong> (Madera, Fuego, Tierra, Metal y Agua),
+            formando un ciclo completo de <strong>60 años</strong> conocido como el
+            ciclo sexagenario.
           </p>
-          <p className="text-center text-lg sm:text-xl mb-6">
-            Selecciona un año para ver su correspondiente animal y elemento.
+          <p className='text-sm sm:text-base'>
+            Cada año no solo está regido por un animal, sino también por un elemento,
+            lo cual influye en la personalidad y energía del período según la astrología
+            tradicional china.
           </p>
         </section>
 
