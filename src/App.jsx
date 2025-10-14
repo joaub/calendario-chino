@@ -43,6 +43,28 @@ function App() {
     Metal: "text-gray-600",
     Agua: "text-blue-600",
   };
+  const descripcionesAnimales = {
+    Rata: "Inteligente y adaptable, símbolo de ingenio y prosperidad.",
+    Buey: "Paciente, fuerte y confiable, representa la disciplina y el esfuerzo constante.",
+    Tigre: "Valiente, apasionado y protector, líder nato que inspira respeto.",
+    Conejo: "Amable, diplomático y sensible, amante de la paz y la armonía.",
+    Dragón: "Poderoso, carismático y creativo, emblema de éxito y buena fortuna.",
+    Serpiente: "Sabia, intuitiva y elegante, con gran capacidad de análisis.",
+    Caballo: "Libre, alegre y energético, amante de la aventura y la independencia.",
+    Cabra: "Artística, empática y tranquila, busca la belleza y la estabilidad emocional.",
+    Mono: "Ingenioso, curioso y divertido, símbolo de inteligencia y picardía.",
+    Gallo: "Organizado, valiente y observador, con gran sentido del deber y del detalle.",
+    Perro: "Leal, protector y justo, siempre busca la verdad y la fidelidad.",
+    Cerdo: "Generoso, honesto y amable, disfruta de la vida con serenidad y gratitud.",
+  };
+
+  const descripcionesElementos = {
+    Madera: "representa el crecimiento, la creatividad y la expansión.",
+    Fuego: "simboliza la pasión, la energía y la transformación.",
+    Tierra: "aporta estabilidad, paciencia y equilibrio.",
+    Metal: "refleja la justicia, la disciplina y la fortaleza interior.",
+    Agua: "encarna la sabiduría, la intuición y la adaptabilidad.",
+  };
 
 
   function getYearSexagenary(year) {
@@ -128,6 +150,10 @@ function App() {
                 {confirmedResult.elemento} {confirmedResult.animal}
                 <span className="text-2xl">{animalEmojis[confirmedResult.animal]}</span>
               </span>
+            </p>
+            <p className="text-gray-700 italic">
+              {descripcionesAnimales[confirmedResult.animal]} Este signo bajo el
+              elemento <strong>{confirmedResult.elemento}</strong> {descripcionesElementos[confirmedResult.elemento]}
             </p>
 
             <div className="text-sm sm:text-base space-y-1">
