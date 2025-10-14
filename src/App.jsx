@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 
 function App() {
-  const [yearInput, setInputYear] = useState("1084");
+  const [yearInput, setInputYear] = useState("1564");
   const [yearConfirmed, setYearConfirmed] = useState(null);
 
   const elementos = ["Madera", "Fuego", "Tierra", "Metal", "Agua"]
@@ -65,16 +65,34 @@ function App() {
     Metal: "refleja la justicia, la disciplina y la fortaleza interior.",
     Agua: "encarna la sabiduría, la intuición y la adaptabilidad.",
   };
+  // Compatibilidades clásicas del zodiaco chino
+  const compatibilidad = {
+    Rata: ["Dragón 🐉", "Mono 🐒", "Buey 🐂"],
+    Buey: ["Rata 🐀", "Serpiente 🐍", "Gallo 🐓"],
+    Tigre: ["Caballo 🐎", "Perro 🐕", "Cerdo 🐖"],
+    Conejo: ["Oveja 🐐", "Cerdo 🐖", "Perro 🐕"],
+    Dragón: ["Rata 🐀", "Mono 🐒", "Gallo 🐓"],
+    Serpiente: ["Buey 🐂", "Gallo 🐓", "Mono 🐒"],
+    Caballo: ["Tigre 🐅", "Perro 🐕", "Cabra 🐐"],
+    Cabra: ["Conejo 🐇", "Cerdo 🐖", "Caballo 🐎"],
+    Mono: ["Rata 🐀", "Dragón 🐉", "Serpiente 🐍"],
+    Gallo: ["Buey 🐂", "Dragón 🐉", "Serpiente 🐍"],
+    Perro: ["Tigre 🐅", "Conejo 🐇", "Caballo 🐎"],
+    Cerdo: ["Conejo 🐇", "Cabra 🐐", "Tigre 🐅"],
+  };
 
+  
 
   function getYearSexagenary(year) {
-    const base = "1084"//inicio madera rata
+    const base = "1564"//inicio madera rata
     let cicloAnimal = (year - base) % 12;
     let cicloElemento = Math.floor((year - base) % 10 / 2);
+   
 
     return {
       animal: animales[cicloAnimal],
       elemento: elementos[cicloElemento]
+      
     }
 
   }
@@ -83,7 +101,7 @@ function App() {
   const parseYear = (value) => {
     const parsed = Number(value);
     if (!Number.isInteger(parsed)) return null; // no es número entero
-    if (parsed < 1084 || parsed > 4000) return null; // fuera de rango
+    if (parsed < 1564 || parsed > 4000) return null; // fuera de rango
     return parsed;
   };
 
@@ -137,7 +155,7 @@ function App() {
 
           {yearConfirmed === null && yearInput !== "" && (
             <p className="text-sm text-red-600">
-              El año debe ser un número entre 1084 y 4000.
+              El año debe ser un número entre 1564 y 4000.
             </p>
           )}
         </div>
@@ -155,6 +173,17 @@ function App() {
               {descripcionesAnimales[confirmedResult.animal]} Este signo bajo el
               elemento <strong>{confirmedResult.elemento}</strong> {descripcionesElementos[confirmedResult.elemento]}
             </p>
+            
+
+            <div className="mt-4 bg-white rounded-lg p-3 shadow-sm border border-gray-200">
+              <h3 className="font-semibold text-lg mb-2 text-gray-800">compatibilidad del signo</h3>
+              <p className="text-sm sm:text-base">
+                Los signos más compatibles con el <strong>{confirmedResult.animal} {animalEmojis[confirmedResult.animal]}</strong> son:{" "}
+                <span className="font-semibold">
+                  {compatibilidad[confirmedResult.animal].join(", ")}
+                </span>
+              </p>
+            </div>
 
             <div className="text-sm sm:text-base space-y-1">
               <p>
