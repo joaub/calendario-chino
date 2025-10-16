@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 function App() {
   const [yearInput, setInputYear] = useState("1564");
   const [yearConfirmed, setYearConfirmed] = useState(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   const elementos = ["Madera", "Fuego", "Tierra", "Metal", "Agua"]
 
@@ -81,18 +82,19 @@ function App() {
     Cerdo: ["Conejo 🐇", "Cabra 🐐", "Tigre 🐅"],
   };
 
-  
+
 
   function getYearSexagenary(year) {
     const base = "1564"//inicio madera rata
     let cicloAnimal = (year - base) % 12;
     let cicloElemento = Math.floor((year - base) % 10 / 2);
-   
+    const nextAnimalYear = year + 12;
+    const nextElementYear = year + 10;
 
     return {
       animal: animales[cicloAnimal],
       elemento: elementos[cicloElemento]
-      
+      , nextAnimalYear, nextElementYear
     }
 
   }
@@ -110,11 +112,20 @@ function App() {
 
   return (
     <>
-      <div className='min-h-screen w-full bg-gradient-to-b from-gray-300 from-60% to-gray-400 to-40% text-black flex flex-col'>
+      <div className={`min-h-screen w-full flex flex-col transition-colors duration-500 ${darkMode
+          ? "bg-gradient-to-b from-gray-900 to-gray-800 text-white"
+          : "bg-gradient-to-b from-gray-300 to-gray-400 text-black"
+        }`}>
 
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 p-4">Ciclo Sexagenario - Calendario Chino</h1>
 
-        <section className='p-4 max-w-2xl mx-auto text-center text-gray-800 space-y-3'>
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="absolute top-4 right-4 px-3 py-1 rounded-md text-sm font-semibold bg-gray-200 hover:bg-gray-300 transition"
+        >
+          {darkMode ? "☀️ Claro" : "🌙 Oscuro"}
+        </button>
+        <section className={ `p-4 max-w-2xl mx-auto text-center text-gray-800 space-y-3 ${darkMode ? "text-white" : "text-black"}`}>
           <p className='text-sm sm:text-base'>
             El calendario chino combina un ciclo de <strong>12 animales</strong> con
             <strong> 5 elementos </strong> (Madera, Fuego, Tierra, Metal y Agua),
@@ -135,7 +146,9 @@ function App() {
               value={yearInput}
               onChange={(e) => setInputYear(e.target.value)}
               placeholder="Ej: 2025"
-              className="flex-1 p-2 border rounded-md focus:outline-none focus:ring focus:ring-sky-400"
+              className={`flex-1 p-2 border rounded-md 
+                focus:outline-none focus:ring focus:ring-sky-400 
+                ${darkMode ? "bg-gray-700 text-white border-gray-600" : "bg-gray-100 border-gray-300"}`}
             />
 
             <button
@@ -161,7 +174,7 @@ function App() {
         </div>
 
         {confirmedResult ? (
-          <div className="max-w-md w-full mx-auto mt-6 p-4 bg-gray-50 border rounded-lg shadow-sm space-y-3 text-center">
+          <div className={`max-w-md w-full mx-auto mt-6 p-4 bg-gray-50 border rounded-lg shadow-sm space-y-3 text-center ${darkMode ? "bg-gray-800 border-gray-700 text-white" : "bg-white border-gray-200 text-black"}`}>
             <p className="text-base sm:text-lg">
               <span className="font-semibold">{yearConfirmed}</span> →{" "}
               <span className={`font-bold ${elementoColors[confirmedResult.elemento]}`}>
@@ -169,14 +182,19 @@ function App() {
                 <span className="text-2xl">{animalEmojis[confirmedResult.animal]}</span>
               </span>
             </p>
-            <p className="text-gray-700 italic">
+            <p className=" italic">
               {descripcionesAnimales[confirmedResult.animal]} Este signo bajo el
               elemento <strong>{confirmedResult.elemento}</strong> {descripcionesElementos[confirmedResult.elemento]}
             </p>
-            
+            <p>
+              El próximo año del {confirmedResult.animal} será <strong>{confirmedResult.nextAnimalYear}</strong>.
+            </p>
+            <p>
+              El próximo año del elemento {confirmedResult.elemento} será <strong>{confirmedResult.nextElementYear}</strong>.
+            </p>
 
-            <div className="mt-4 bg-white rounded-lg p-3 shadow-sm border border-gray-200">
-              <h3 className="font-semibold text-lg mb-2 text-gray-800">compatibilidad del signo</h3>
+            <div className={ `mt-4  rounded-lg p-3 shadow-sm border border-gray-200 ${darkMode ? "bg-gray-700 border-gray-600" : "bg-white border-gray-200"}`}>
+              <h3 className="font-semibold text-lg mb-2">compatibilidad del signo</h3>
               <p className="text-sm sm:text-base">
                 Los signos más compatibles con el <strong>{confirmedResult.animal} {animalEmojis[confirmedResult.animal]}</strong> son:{" "}
                 <span className="font-semibold">
