@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
 
-
 function App() {
   const [yearInput, setInputYear] = useState("1564");
   const [yearConfirmed, setYearConfirmed] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
+  const [name, setName] = useState("")
 
   const elementos = ["Madera", "Fuego", "Tierra", "Metal", "Agua"]
 
@@ -84,6 +84,7 @@ function App() {
 
 
 
+
   function getYearSexagenary(year) {
     const base = "1564"//inicio madera rata
     let cicloAnimal = (year - base) % 12;
@@ -110,22 +111,33 @@ function App() {
   const confirmedResult =
     yearConfirmed !== null ? getYearSexagenary(yearConfirmed) : null;
 
+
+
   return (
     <>
       <div className={`min-h-screen w-full flex flex-col transition-colors duration-500 ${darkMode
-          ? "bg-gradient-to-b from-gray-900 to-gray-800 text-white"
+          ? "bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100"
           : "bg-gradient-to-b from-gray-300 to-gray-400 text-black"
-        }`}>
-
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 p-4">Ciclo Sexagenario - Calendario Chino</h1>
+        }`}
+      >
+        {/* Header */}
+      <header className="flex justify-between items-center p-4 max-w-4xl mx-auto">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center">
+          Ciclo Sexagenario - Calendario Chino
+        </h1>
 
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className="absolute top-4 right-4 px-3 py-1 rounded-md text-sm font-semibold bg-gray-200 hover:bg-gray-300 transition"
+          className={`absolute top-4 right-4 px-3 py-1 rounded-md text-sm font-semibold transition ${darkMode
+              ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
+              : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+            }`}
         >
           {darkMode ? "☀️ Claro" : "🌙 Oscuro"}
         </button>
-        <section className={ `p-4 max-w-2xl mx-auto text-center text-gray-800 space-y-3 ${darkMode ? "text-white" : "text-black"}`}>
+      </header>
+
+        <section className={`p-4 max-w-2xl mx-auto text-center text-gray-800 space-y-3 ${darkMode ? "text-white" : "text-black"}`}>
           <p className='text-sm sm:text-base'>
             El calendario chino combina un ciclo de <strong>12 animales</strong> con
             <strong> 5 elementos </strong> (Madera, Fuego, Tierra, Metal y Agua),
@@ -133,13 +145,26 @@ function App() {
             ciclo sexagenario.
           </p>
           <p className='text-sm sm:text-base'>
-            Cada año no solo está regido por un animal, sino también por un elemento,
-            lo cual influye en la personalidad y energía del período según la astrología
-            tradicional china.
+            Cada año está regido por un animal y un elemento, influyendo en la personalidad
+            y energía del período según la astrología tradicional china.
           </p>
         </section>
 
-        <div className="max-w-md w-full mx-auto bg-white p-6 rounded-2xl shadow-md space-y-4 px-4">
+        <div className={`max-w-md w-full mx-auto mt-6 p-6 rounded-2xl shadow-xl space-y-4 ${
+          darkMode ? "bg-gray-800" : "bg-white"
+        }`}>
+            <h2 className="text-lg font-semibold text-center mb-2">Descubrí tu signo</h2>
+         
+          <input
+            type="text"
+            placeholder="Tu nombre"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={`w-full p-2 border rounded-md text-center ${darkMode
+                ? "bg-gray-700 text-white border-gray-600"
+                : "bg-gray-100 border-gray-300"
+              }`}
+          />
           <div className="flex flex-col sm:flex-row gap-2">
             <input
               type="number"
@@ -176,6 +201,9 @@ function App() {
         {confirmedResult ? (
           <div className={`max-w-md w-full mx-auto mt-6 p-4 bg-gray-50 border rounded-lg shadow-sm space-y-3 text-center ${darkMode ? "bg-gray-800 border-gray-700 text-white" : "bg-white border-gray-200 text-black"}`}>
             <p className="text-base sm:text-lg">
+              {name && <strong>{name}, </strong>}
+              naciste en el año{" "}
+              
               <span className="font-semibold">{yearConfirmed}</span> →{" "}
               <span className={`font-bold ${elementoColors[confirmedResult.elemento]}`}>
                 {confirmedResult.elemento} {confirmedResult.animal}
@@ -187,13 +215,13 @@ function App() {
               elemento <strong>{confirmedResult.elemento}</strong> {descripcionesElementos[confirmedResult.elemento]}
             </p>
             <p>
-              El próximo año del {confirmedResult.animal} será <strong>{confirmedResult.nextAnimalYear}</strong>.
+              🔮 El próximo año del {confirmedResult.animal} será <strong>{confirmedResult.nextAnimalYear}</strong>.
             </p>
             <p>
-              El próximo año del elemento {confirmedResult.elemento} será <strong>{confirmedResult.nextElementYear}</strong>.
+              🔮 El próximo año del elemento {confirmedResult.elemento} será <strong>{confirmedResult.nextElementYear}</strong>.
             </p>
 
-            <div className={ `mt-4  rounded-lg p-3 shadow-sm border border-gray-200 ${darkMode ? "bg-gray-700 border-gray-600" : "bg-white border-gray-200"}`}>
+            <div className={`mt-4  rounded-lg p-3 shadow-sm border border-gray-200 ${darkMode ? "bg-gray-700 border-gray-600" : "bg-white border-gray-200"}`}>
               <h3 className="font-semibold text-lg mb-2">compatibilidad del signo</h3>
               <p className="text-sm sm:text-base">
                 Los signos más compatibles con el <strong>{confirmedResult.animal} {animalEmojis[confirmedResult.animal]}</strong> son:{" "}
@@ -217,6 +245,9 @@ function App() {
             Introduce un año válido (número entero).
           </p>
         )}
+        <footer className="text-center mt-12 pb-4 text-xs opacity-60">
+        © 2025 Calculadora del Zodiaco Chino
+      </footer>
       </div>
     </>
   )
