@@ -149,7 +149,7 @@ function App() {
 
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className={`absolute top-4 right-4 px-3 py-1 rounded-md text-sm font-semibold bg-gray-200 hover:bg-gray-300 transition ${darkMode
+            className={`absolute top-2 right-4 px-3 py-1 rounded-md text-sm font-semibold bg-gray-200 hover:bg-gray-300 transition ${darkMode
               ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
               : "bg-gray-200 text-gray-800 hover:bg-gray-300"
               }`}
