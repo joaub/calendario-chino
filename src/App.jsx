@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { signDescriptions } from "./descripciones.js";
 
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   const [yearConfirmed, setYearConfirmed] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const [name, setName] = useState("")
+
 
   const elementos = ["Madera", "Fuego", "Tierra", "Metal", "Agua"]
 
@@ -83,12 +85,12 @@ function App() {
   };
 
   const fondoIlustracion = {
-  Madera: "url('/bg-wood.jpg')",
-  Fuego: "url('/bg-fire.jpg')",
-  Agua: "url('/bg-water.jpg')",
-  Tierra: "url('/bg-ground.jpg')",
-  Metal: "url('/bg-metal.jpg')",
-};
+    Madera: "url('/bg-wood.jpg')",
+    Fuego: "url('/bg-fire.jpg')",
+    Agua: "url('/bg-water.jpg')",
+    Tierra: "url('/bg-ground.jpg')",
+    Metal: "url('/bg-metal.jpg')",
+  };
 
 
   function getYearSexagenary(year) {
@@ -117,11 +119,14 @@ function App() {
   const confirmedResult =
     yearConfirmed !== null ? getYearSexagenary(yearConfirmed) : null;
 
-
+  const descripcionCompleta =
+    confirmedResult
+      ? signDescriptions[confirmedResult.animal]?.[confirmedResult.elemento]
+      : "";
 
   return (
     <>
-      <div className={`min-h-screen w-full relative bg-cover bg-center transition-all duration-700 ${darkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-black"
+      <div className={`min-h-screen w-full relative bg-cover bg-center transition-all duration-600 ${darkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-black"
         }`}
         style={{
           backgroundImage: confirmedResult
@@ -137,25 +142,25 @@ function App() {
         )}
         {/* Header */}
         <div className="relative z-10 flex flex-col items-center p-4">
-           
-            <h1 className="text-2xl sm:text-3xl font-bold text-center">
-              Ciclo Sexagenario - Calendario Chino
-            </h1>
 
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`absolute top-4 right-4 px-3 py-1 rounded-md text-sm font-semibold bg-gray-200 hover:bg-gray-300 transition ${darkMode
-                ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
-                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                }`}
-            >
-              {darkMode ? "☀️ Claro" : "🌙 Oscuro"}
-            </button>
-         
+          <h1 className="text-2xl sm:text-3xl font-bold text-center p-3">
+            Ciclo Sexagenario Chino
+          </h1>
+
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className={`absolute top-4 right-4 px-3 py-1 rounded-md text-sm font-semibold bg-gray-200 hover:bg-gray-300 transition ${darkMode
+              ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
+              : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+              }`}
+          >
+            {darkMode ? "☀️ Claro" : "🌙 Oscuro"}
+          </button>
+
 
           <section className={`max-w-2xl text-center p-6 mb-4 rounded-xl shadow-md ${darkMode
-              ? "bg-gray-800/70 text-gray-100"
-              : "bg-white/70 text-gray-900"
+            ? "bg-gray-800/70 text-gray-100"
+            : "bg-white/70 text-gray-900"
             }`}>
             <p className='text-sm sm:text-base'>
               El calendario chino combina un ciclo de <strong>12 animales</strong> con
@@ -169,7 +174,7 @@ function App() {
             </p>
           </section>
 
-          <div className={`max-w-md w-full mx-auto mt-6 p-6 rounded-2xl shadow-xl space-y-4 ${darkMode ? "bg-gray-800/80" : "bg-white/80"
+          <div className={`max-w-md w-full mx-auto mt-6 p-4 rounded-2xl shadow-xl space-y-4 ${darkMode ? "bg-gray-800/80" : "bg-white/80"
             }`}>
             <h2 className="text-lg font-semibold text-center mb-2">Descubrí tu signo</h2>
 
@@ -228,7 +233,10 @@ function App() {
                   <span className="text-2xl">{animalEmojis[confirmedResult.animal]}</span>
                 </span>
               </p>
-              <p className=" italic">
+              {descripcionCompleta && (
+                <p className="mt-2"> {confirmedResult.animal} de {confirmedResult.elemento} es {descripcionCompleta}</p>
+              )}
+              <p className=" italic">{confirmedResult.animal}{" "}
                 {descripcionesAnimales[confirmedResult.animal]} Este signo bajo el
                 elemento <strong>{confirmedResult.elemento}</strong> {descripcionesElementos[confirmedResult.elemento]}
               </p>
