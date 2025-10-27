@@ -193,6 +193,7 @@ function App() {
                 type="number"
                 value={yearInput}
                 onChange={(e) => setInputYear(e.target.value)}
+
                 placeholder="Ej: 2025"
                 className={`flex-1 p-2 border rounded-md 
                 focus:outline-none focus:ring focus:ring-sky-400 
@@ -265,6 +266,20 @@ function App() {
                   <strong>Animales (orden):</strong> {animales.join(", ")}
                 </p>
               </div>
+              {/* 🔁 Botón Reiniciar */}
+              <button
+                onClick={() => {
+                  setYearConfirmed(null);
+                  setInputYear("1564");
+                  setName("");
+                }}
+                className={`mt-5 px-4 py-2 rounded-md font-semibold transition 
+                    ${darkMode
+                    ? "bg-gray-700 hover:bg-gray-600 text-gray-100"
+                    : "bg-gray-200 hover:bg-gray-300 text-gray-800"}`}
+              >
+                🔁 Reiniciar
+              </button>
             </div>
           ) : (
             <p className="text-center  mt-6 px-4">
