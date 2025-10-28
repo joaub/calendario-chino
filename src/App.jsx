@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { signDescriptions } from "./descripciones.js";
 
 
@@ -7,6 +7,7 @@ function App() {
   const [yearConfirmed, setYearConfirmed] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const [name, setName] = useState("")
+  const resultRef = useRef(null);
 
 
   const elementos = ["Madera", "Fuego", "Tierra", "Metal", "Agua"]
@@ -126,7 +127,7 @@ function App() {
 
   return (
     <>
-      <div className={`min-h-screen w-full relative bg-cover bg-center transition-all duration-600 ${darkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-black"
+      <div ref={resultRef} className={`min-h-screen w-full relative bg-cover bg-center transition-all duration-600 ${darkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-black"
         }`}
         style={{
           backgroundImage: confirmedResult
@@ -205,6 +206,9 @@ function App() {
                   const parsed = parseYear(yearInput);
                   if (parsed !== null) {
                     setYearConfirmed(parsed);
+                    setTimeout(() => {
+                      resultRef.current?.scrollIntoView({ behavior: "smooth" });
+                    }, 200);
                   } else {
                     setYearConfirmed(null);
                   }
