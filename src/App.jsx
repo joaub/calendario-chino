@@ -176,7 +176,7 @@ function App() {
 
           <div className={`max-w-md w-full mx-auto mt-6 p-4 rounded-2xl shadow-xl space-y-4 ${darkMode ? "bg-gray-800/80" : "bg-white/80"
             }`}>
-            <h2 className="text-lg font-semibold text-center mb-2">Descubrí tu signo</h2>
+            <h2 className="text-lg font-semibold text-center mb-2">¿Qué animal sos en el zodiaco chino? Descubrí tu signo</h2>
 
             <input
               type="text"
@@ -217,13 +217,27 @@ function App() {
 
             {yearConfirmed === null && yearInput !== "" && (
               <p className="text-sm text-red-600">
-                El año debe ser un número entre 1564 y 4000.
+                ❌ Ups, el año debe estar entre 1564 y 4000. ¡Probá de nuevo!
               </p>
             )}
           </div>
 
           {confirmedResult ? (
-            <div className={`max-w-md w-full mx-auto mt-6 p-4 bg-gray-50 border rounded-lg shadow-sm space-y-3 text-center ${darkMode ? "bg-gray-800 border-gray-700 text-white" : "bg-white border-gray-200 text-black"}`}>
+            <div
+              className={`max-w-md w-full mx-auto mt-6 p-4 rounded-xl shadow-lg space-y-3 text-center 
+                ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"} 
+                ${confirmedResult.elemento === "Madera" ? "border-green-400" :
+                  confirmedResult.elemento === "Fuego" ? "border-red-400" :
+                    confirmedResult.elemento === "Tierra" ? "border-yellow-400" :
+                      confirmedResult.elemento === "Metal" ? "border-gray-400" :
+                        "border-blue-400"} 
+                          border-4`}
+              style={{
+                boxShadow: darkMode
+                  ? "0 0 15px 3px rgba(255,255,255,0.2)"
+                  : "0 0 15px 3px rgba(0,0,0,0.1)",
+              }}
+            >
               <p className="text-base sm:text-lg">
                 {name && <strong>{name}, </strong>}
                 naciste en el año{" "}
@@ -280,6 +294,34 @@ function App() {
               >
                 🔁 Reiniciar
               </button>
+              {/* 🎉 Botón para compartir */}
+              <button
+                onClick={() => {
+                  const shareText = `${name || "Descubrí"} su signo del Zodiaco Chino 🐉:
+                  ${confirmedResult.elemento} ${confirmedResult.animal} ${animalEmojis[confirmedResult.animal]}.
+                    Año: ${yearConfirmed}.
+                    ¡Mirá cuál es el tuyo! 🔮`;
+
+                  if (navigator.share) {
+                    navigator.share({
+                      title: "Zodiaco Chino 2025",
+                      text: shareText,
+                      url: window.location.href,
+                    });
+                  } else {
+                    navigator.clipboard.writeText(shareText);
+                    alert("📋 Tu signo fue copiado al portapapeles. ¡Pegalo y compartilo!");
+                  }
+                }}
+                className={`mt-3 px-4 py-2 rounded-md font-semibold transition
+                  ${darkMode
+                    ? "bg-sky-700 hover:bg-sky-600 text-gray-100"
+                    : "bg-sky-500 hover:bg-sky-600 text-white"
+                  }`}
+              >
+                🎉 Compartir mi signo
+              </button>
+
             </div>
           ) : (
             <p className="text-center  mt-6 px-4">
