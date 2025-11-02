@@ -93,6 +93,13 @@ function App() {
     Metal: "url('/bg-metal.jpg')",
   };
 
+  const elementoBorderColors = {
+    Madera: "border-green-400",
+    Fuego: "border-red-400",
+    Tierra: "border-yellow-400",
+    Metal: "border-gray-400",
+    Agua: "border-blue-400",
+  };
 
   function getYearSexagenary(year) {
     const base = "1564"//inicio madera rata
@@ -230,11 +237,7 @@ function App() {
             <div
               className={`max-w-md w-full mx-auto mt-6 p-4 rounded-xl shadow-lg space-y-3 text-center 
                 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"} 
-                ${confirmedResult.elemento === "Madera" ? "border-green-400" :
-                  confirmedResult.elemento === "Fuego" ? "border-red-400" :
-                    confirmedResult.elemento === "Tierra" ? "border-yellow-400" :
-                      confirmedResult.elemento === "Metal" ? "border-gray-400" :
-                        "border-blue-400"} 
+                ${confirmedResult.elemento && elementoBorderColors[confirmedResult.elemento]} 
                           border-4`}
               style={{
                 boxShadow: darkMode
