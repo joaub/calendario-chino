@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react'
-import { signDescriptions } from "./descripciones.js";
+import { signDescriptions, elementos, animales, animalEmojis,
+  elementoColors,descripcionesAnimales,descripcionesElementos,
+  compatibilidad,fondoIlustracion,elementoBorderColors} from "./descripciones.js";
 
 
 function App() {
@@ -9,97 +11,9 @@ function App() {
   const [name, setName] = useState("")
   const resultRef = useRef(null);
 
+  
 
-  const elementos = ["Madera", "Fuego", "Tierra", "Metal", "Agua"]
-
-  const animales = [
-    "Rata",
-    "Buey",
-    "Tigre",
-    "Conejo",
-    "Dragón",
-    "Serpiente",
-    "Caballo",
-    "Cabra",
-    "Mono",
-    "Gallo",
-    "Perro",
-    "Cerdo"]
-
-  const animalEmojis = {
-    Rata: "🐀",
-    Buey: "🐂",
-    Tigre: "🐅",
-    Conejo: "🐇",
-    Dragón: "🐉",
-    Serpiente: "🐍",
-    Caballo: "🐎",
-    Cabra: "🐐",
-    Mono: "🐒",
-    Gallo: "🐓",
-    Perro: "🐕",
-    Cerdo: "🐖",
-  };
-  const elementoColors = {
-    Madera: "text-green-600",
-    Fuego: "text-red-600",
-    Tierra: "text-yellow-600",
-    Metal: "text-gray-600",
-    Agua: "text-blue-600",
-  };
-  const descripcionesAnimales = {
-    Rata: "Inteligente y adaptable, símbolo de ingenio y prosperidad.",
-    Buey: "Paciente, fuerte y confiable, representa la disciplina y el esfuerzo constante.",
-    Tigre: "Valiente, apasionado y protector, líder nato que inspira respeto.",
-    Conejo: "Amable, diplomático y sensible, amante de la paz y la armonía.",
-    Dragón: "Poderoso, carismático y creativo, emblema de éxito y buena fortuna.",
-    Serpiente: "Sabia, intuitiva y elegante, con gran capacidad de análisis.",
-    Caballo: "Libre, alegre y energético, amante de la aventura y la independencia.",
-    Cabra: "Artística, empática y tranquila, busca la belleza y la estabilidad emocional.",
-    Mono: "Ingenioso, curioso y divertido, símbolo de inteligencia y picardía.",
-    Gallo: "Organizado, valiente y observador, con gran sentido del deber y del detalle.",
-    Perro: "Leal, protector y justo, siempre busca la verdad y la fidelidad.",
-    Cerdo: "Generoso, honesto y amable, disfruta de la vida con serenidad y gratitud.",
-  };
-
-  const descripcionesElementos = {
-    Madera: "representa el crecimiento, la creatividad y la expansión.",
-    Fuego: "simboliza la pasión, la energía y la transformación.",
-    Tierra: "aporta estabilidad, paciencia y equilibrio.",
-    Metal: "refleja la justicia, la disciplina y la fortaleza interior.",
-    Agua: "encarna la sabiduría, la intuición y la adaptabilidad.",
-  };
-  // Compatibilidades clásicas del zodiaco chino
-  const compatibilidad = {
-    Rata: ["Dragón 🐉", "Mono 🐒", "Buey 🐂"],
-    Buey: ["Rata 🐀", "Serpiente 🐍", "Gallo 🐓"],
-    Tigre: ["Caballo 🐎", "Perro 🐕", "Cerdo 🐖"],
-    Conejo: ["Oveja 🐐", "Cerdo 🐖", "Perro 🐕"],
-    Dragón: ["Rata 🐀", "Mono 🐒", "Gallo 🐓"],
-    Serpiente: ["Buey 🐂", "Gallo 🐓", "Mono 🐒"],
-    Caballo: ["Tigre 🐅", "Perro 🐕", "Cabra 🐐"],
-    Cabra: ["Conejo 🐇", "Cerdo 🐖", "Caballo 🐎"],
-    Mono: ["Rata 🐀", "Dragón 🐉", "Serpiente 🐍"],
-    Gallo: ["Buey 🐂", "Dragón 🐉", "Serpiente 🐍"],
-    Perro: ["Tigre 🐅", "Conejo 🐇", "Caballo 🐎"],
-    Cerdo: ["Conejo 🐇", "Cabra 🐐", "Tigre 🐅"],
-  };
-
-  const fondoIlustracion = {
-    Madera: "url('/bg-wood.jpg')",
-    Fuego: "url('/bg-fire.jpg')",
-    Agua: "url('/bg-water.jpg')",
-    Tierra: "url('/bg-ground.jpg')",
-    Metal: "url('/bg-metal.jpg')",
-  };
-
-  const elementoBorderColors = {
-    Madera: "border-green-400",
-    Fuego: "border-red-400",
-    Tierra: "border-yellow-400",
-    Metal: "border-gray-400",
-    Agua: "border-blue-400",
-  };
+  
 
   function getYearSexagenary(year) {
     const base = "1564"//inicio madera rata
