@@ -1,7 +1,11 @@
 import React, { useState, useRef } from 'react'
-import { signDescriptions, elementos, animales, animalEmojis,
-  elementoColors,descripcionesAnimales,descripcionesElementos,
-  compatibilidad,fondoIlustracion,elementoBorderColors} from "./descripciones.js";
+import {
+  ELEMENTOS,DESCRIPCIONES_ELEMENTOS,
+  ELEMENTO_COLORS,ELEMENTO_BORDERS,
+  ELEMENTO_BACKGROUNDS,ANIMALES,
+  ANIMAL_EMOJIS,DESCRIPCIONES_ANIMALES,
+  SIGN_DESCRIPTIONS,COMPATIBILIDAD
+} from './descripciones.js';
 
 
 function App() {
@@ -11,9 +15,6 @@ function App() {
   const [name, setName] = useState("")
   const resultRef = useRef(null);
 
-  
-
-  
 
   function getYearSexagenary(year) {
     const base = "1564"//inicio madera rata
@@ -23,8 +24,8 @@ function App() {
     const nextElementYear = year + 10;
 
     return {
-      animal: animales[cicloAnimal],
-      elemento: elementos[cicloElemento]
+      animal: ANIMALES[cicloAnimal],
+      elemento: ELEMENTOS[cicloElemento]
       , nextAnimalYear, nextElementYear
     }
 
@@ -43,16 +44,17 @@ function App() {
 
   const descripcionCompleta =
     confirmedResult
-      ? signDescriptions[confirmedResult.animal]?.[confirmedResult.elemento]
+      ? SIGN_DESCRIPTIONS[confirmedResult.animal]?.[confirmedResult.elemento]
       : "";
 
+      
   return (
     <>
       <div ref={resultRef} className={`min-h-screen w-full relative bg-cover bg-center transition-all duration-600 ${darkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-black"
         }`}
         style={{
           backgroundImage: confirmedResult
-            ? fondoIlustracion[confirmedResult.elemento]
+            ? ELEMENTO_BACKGROUNDS[confirmedResult.elemento]
             : "none",
         }}
       >
@@ -151,7 +153,7 @@ function App() {
             <div
               className={`max-w-md w-full mx-auto mt-6 p-4 rounded-xl shadow-lg space-y-3 text-center 
                 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"} 
-                ${confirmedResult.elemento && elementoBorderColors[confirmedResult.elemento]} 
+                ${confirmedResult.elemento && ELEMENTO_BORDERS[confirmedResult.elemento]} 
                           border-4`}
               style={{
                 boxShadow: darkMode
@@ -164,17 +166,17 @@ function App() {
                 naciste en el año{" "}
 
                 <span className="font-semibold">{yearConfirmed}</span> →{" "}
-                <span className={`font-bold ${elementoColors[confirmedResult.elemento]}`}>
+                <span className={`font-bold ${ELEMENTO_COLORS[confirmedResult.elemento]}`}>
                   {confirmedResult.elemento} {confirmedResult.animal}
-                  <span className="text-2xl">{animalEmojis[confirmedResult.animal]}</span>
+                  <span className="text-2xl">{ANIMAL_EMOJIS[confirmedResult.animal]}</span>
                 </span>
               </p>
               {descripcionCompleta && (
                 <p className="mt-2"> {confirmedResult.animal} de {confirmedResult.elemento} es {descripcionCompleta}</p>
               )}
               <p className=" italic">{confirmedResult.animal}{" "}
-                {descripcionesAnimales[confirmedResult.animal]} Este signo bajo el
-                elemento <strong>{confirmedResult.elemento}</strong> {descripcionesElementos[confirmedResult.elemento]}
+                {DESCRIPCIONES_ANIMALES[confirmedResult.animal]} Este signo bajo el
+                elemento <strong>{confirmedResult.elemento}</strong> {DESCRIPCIONES_ELEMENTOS[confirmedResult.elemento]}
               </p>
               <p>
                 🔮 El próximo año del {confirmedResult.animal} será <strong>{confirmedResult.nextAnimalYear}</strong>.
@@ -186,19 +188,19 @@ function App() {
               <div className={`mt-4  rounded-lg p-3 shadow-sm border border-gray-200 ${darkMode ? "bg-gray-700 border-gray-600" : "bg-white border-gray-200"}`}>
                 <h3 className="font-semibold text-lg mb-2">compatibilidad del signo</h3>
                 <p className="text-sm sm:text-base">
-                  Los signos más compatibles con el <strong>{confirmedResult.animal} {animalEmojis[confirmedResult.animal]}</strong> son:{" "}
+                  Los signos más compatibles con el <strong>{confirmedResult.animal} {ANIMAL_EMOJIS[confirmedResult.animal]}</strong> son:{" "}
                   <span className="font-semibold">
-                    {compatibilidad[confirmedResult.animal].join(", ")}
+                    {COMPATIBILIDAD[confirmedResult.animal].join(", ")}
                   </span>
                 </p>
               </div>
 
               <div className="text-sm sm:text-base space-y-1">
                 <p>
-                  <strong>Elementos (orden):</strong> {elementos.join(", ")}
+                  <strong>Elementos (orden):</strong> {ELEMENTOS.join(", ")}
                 </p>
                 <p>
-                  <strong>Animales (orden):</strong> {animales.join(", ")}
+                  <strong>Animales (orden):</strong> {ANIMALES.join(", ")}
                 </p>
               </div>
               {/* 🔁 Botón Reiniciar */}
@@ -219,7 +221,7 @@ function App() {
               <button
                 onClick={() => {
                   const shareText = `${name || "Descubrí"} su signo del Zodiaco Chino 🐉:
-                  ${confirmedResult.elemento} ${confirmedResult.animal} ${animalEmojis[confirmedResult.animal]}.
+                  ${confirmedResult.elemento} ${confirmedResult.animal} ${ANIMAL_EMOJIS[confirmedResult.animal]}.
                     Año: ${yearConfirmed}.
                     ¡Mirá cuál es el tuyo! 🔮`;
 
