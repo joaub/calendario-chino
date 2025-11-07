@@ -9,7 +9,7 @@ import {
 
 
 function App() {
-  const [yearInput, setInputYear] = useState("1564");
+  const [yearInput, setInputYear] = useState("");
   const [yearConfirmed, setYearConfirmed] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const [name, setName] = useState("")
