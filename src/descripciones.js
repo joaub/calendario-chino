@@ -1,14 +1,15 @@
 // --- ELEMENTOS ---
+
 export const ELEMENTOS = ["Madera", "Fuego", "Tierra", "Metal", "Agua"]
 
-export const DESCRIPCIONES_ELEMENTOS  = {
-  Madera: "representa el crecimiento, la creatividad y la expansión.",
+export const DESCRIPCIONES_ELEMENTOS = {
+  Madera: "representa el crecimiento,flexibilidad, la creatividad y la expansión.",
   Fuego: "simboliza la pasión, la energía y la transformación.",
   Tierra: "aporta estabilidad, paciencia y equilibrio.",
-  Metal: "refleja la justicia, la disciplina y la fortaleza interior.",
+  Metal: "refleja la justicia,determinación, claridad, la disciplina y la fortaleza interior.",
   Agua: "encarna la sabiduría, la intuición y la adaptabilidad.",
 };
-export const ELEMENTO_COLORS  = {
+export const ELEMENTO_COLORS = {
   Madera: "text-green-600",
   Fuego: "text-red-600",
   Tierra: "text-yellow-600",
@@ -16,7 +17,7 @@ export const ELEMENTO_COLORS  = {
   Agua: "text-blue-600",
 };
 
-export const ELEMENTO_BACKGROUNDS  = {
+export const ELEMENTO_BACKGROUNDS = {
   Madera: "url('/bg-wood.jpg')",
   Fuego: "url('/bg-fire.jpg')",
   Agua: "url('/bg-water.jpg')",
@@ -24,7 +25,7 @@ export const ELEMENTO_BACKGROUNDS  = {
   Metal: "url('/bg-metal.jpg')",
 };
 
-export const ELEMENTO_BORDERS  = {
+export const ELEMENTO_BORDERS = {
   Madera: "border-green-400",
   Fuego: "border-red-400",
   Tierra: "border-yellow-400",
@@ -48,7 +49,7 @@ export const ANIMALES = [
   "Perro",
   "Cerdo"];
 
-export const ANIMAL_EMOJIS  = {
+export const ANIMAL_EMOJIS = {
   Rata: "🐀",
   Buey: "🐂",
   Tigre: "🐅",
@@ -63,13 +64,13 @@ export const ANIMAL_EMOJIS  = {
   Cerdo: "🐖",
 };
 
-export const DESCRIPCIONES_ANIMALES  = {
-  Rata: "Inteligente y adaptable, símbolo de ingenio y prosperidad.",
-  Buey: "Paciente, fuerte y confiable, representa la disciplina y el esfuerzo constante.",
+export const DESCRIPCIONES_ANIMALES = {
+  Rata: "Inteligente y adaptable, símbolo de ingenio y prosperidad. Astuto, sociable y con gran intuición para oportunidades.",
+  Buey: "Paciente, fuerte y confiable, representa la disciplina y el esfuerzo constante. Trabajador, perseverante y confiable.",
   Tigre: "Valiente, apasionado y protector, líder nato que inspira respeto.",
-  Conejo: "Amable, diplomático y sensible, amante de la paz y la armonía.",
-  Dragón: "Poderoso, carismático y creativo, emblema de éxito y buena fortuna.",
-  Serpiente: "Sabia, intuitiva y elegante, con gran capacidad de análisis.",
+  Conejo: "Amable, sereno, diplomático y con buen gusto por la armonía.",
+  Dragón: "Poderoso, carismático y creativo, emblema de éxito y buena fortuna, lleno de energía creativa",
+  Serpiente: "Sabia, intuitiva y elegante, con gran capacidad de análisis, reflexiva y con mucha profundidad emocional",
   Caballo: "Libre, alegre y energético, amante de la aventura y la independencia.",
   Cabra: "Artística, empática y tranquila, busca la belleza y la estabilidad emocional.",
   Mono: "Ingenioso, curioso y divertido, símbolo de inteligencia y picardía.",
@@ -82,92 +83,89 @@ export const DESCRIPCIONES_ANIMALES  = {
 
 export const SIGN_DESCRIPTIONS = {
   Rata: {
-    Madera: "Ingeniosa, comunicativa y adaptable, pero algo impulsiva y ansiosa.",
-    Fuego: "Energética, carismática y ambiciosa, aunque puede ser dominante.",
-    Tierra: "Práctica, organizada y leal, aunque algo posesiva.",
-    Metal: "Valiente, decidida y lógica, pero a veces demasiado crítica.",
-    Agua: "Intuitiva, empática y emocional, pero algo insegura."
+    Madera: "una mente creativa y emprendedora.",
+    Fuego: "un espíritu apasionado y carismático.",
+    Tierra: "práctica y con buena intuición para negocios.",
+    Metal: "determinada y enfocada en objetivos.",
+    Agua: "profundamente perceptiva y adaptable."
   },
   Buey: {
-    Madera: "Paciente y confiable, con ideas firmes; puede ser obstinado.",
-    Fuego: "Fuerte y apasionado, pero puede tener mal genio.",
-    Tierra: "Estable, trabajador y realista; muy confiable.",
-    Metal: "Disciplinado, perseverante y resistente al cambio.",
-    Agua: "Flexible, tranquilo y amable, aunque indeciso."
+    Madera: "constante y con visión a largo plazo.",
+    Fuego: "trabajador con energía y coraje.",
+    Tierra: "muy estable y confiable.",
+    Metal: "organizado y con disciplina férrea.",
+    Agua: "sensible y adaptable en lo emocional."
   },
   Tigre: {
-    Madera: "Idealista, justo y valiente, con espíritu de liderazgo.",
-    Fuego: "Apasionado, impulsivo y aventurero; busca desafíos.",
-    Tierra: "Equilibrado, protector y responsable.",
-    Metal: "Intenso, decidido y competitivo.",
-    Agua: "Encantador, intuitivo y emocionalmente profundo."
+    Madera: "audaz y creativo, busca liderar.",
+    Fuego: "valiente, impulsivo y atractivo.",
+    Tierra: "con pies en la tierra pero ambicioso.",
+    Metal: "fuerte, decidido y competitivo.",
+    Agua: "intenso emocionalmente y carismático."
   },
   Conejo: {
-    Madera: "Gentil, creativo y diplomático, pero algo evasivo.",
-    Fuego: "Alegre, carismático y sociable; busca armonía.",
-    Tierra: "Confiable, prudente y amable; muy protector.",
-    Metal: "Elegante, racional y algo reservado.",
-    Agua: "Empático, artístico y sensible; puede ser cambiante."
+    Madera: "amable, con gusto por la estética.",
+    Fuego: "encantador y con gran energía social.",
+    Tierra: "sereno, práctico y con buen juicio.",
+    Metal: "cuidadoso y con sentido del detalle.",
+    Agua: "intuitivo y profundamente empático."
   },
   Dragón: {
-    Madera: "Idealista, visionario y generoso.",
-    Fuego: "Carismático, poderoso y enérgico; líder natural.",
-    Tierra: "Práctico, estable y reflexivo.",
-    Metal: "Determinado, valiente y con gran confianza.",
-    Agua: "Sabio, misterioso y con gran intuición."
+    Madera: "creativo y expansivo, soñador.",
+    Fuego: "magnético, entusiasta y audaz.",
+    Tierra: "ambicioso pero con fundamentos sólidos.",
+    Metal: "imponente y con fuerte carácter.",
+    Agua: "profundo, adaptativo y visionario."
   },
   Serpiente: {
-    Madera: "Sabia, flexible y compasiva; buena consejera.",
-    Fuego: "Apasionada, magnética y carismática.",
-    Tierra: "Racional, tranquila y paciente.",
-    Metal: "Elegante, analítica y reservada.",
-    Agua: "Misteriosa, profunda y muy intuitiva."
+    Madera: "refinada y con buen gusto por la belleza.",
+    Fuego: "apasionada y enigmática.",
+    Tierra: "práctica, prudente y estable.",
+    Metal: "analítica y con gran autocontrol.",
+    Agua: "misteriosa, muy intuitiva."
   },
   Caballo: {
-    Madera: "Entusiasta, optimista y libre.",
-    Fuego: "Vibrante, impulsivo y sociable; ama la aventura.",
-    Tierra: "Responsable, decidido y trabajador.",
-    Metal: "Fuerte, ambicioso y determinado.",
-    Agua: "Flexible, adaptable y con gran empatía."
+    Madera: "entusiasta y con energía para crear.",
+    Fuego: "apasionado y amante de la aventura.",
+    Tierra: "constante, con trabajo y perseverancia.",
+    Metal: "independiente y de fuerte voluntad.",
+    Agua: "sensible, adaptable y emocionalmente abierto."
   },
   Cabra: {
-    Madera: "Artística, amable y compasiva.",
-    Fuego: "Alegre, expresiva y creativa.",
-    Tierra: "Práctica, confiable y protectora.",
-    Metal: "Reservada, disciplinada y elegante.",
-    Agua: "Emocional, intuitiva y sensible."
+    Madera: "creativa, pacífica y con gusto artístico.",
+    Fuego: "expresiva y afectuosa.",
+    Tierra: "serena, práctica y confiable.",
+    Metal: "delicada pero con determinación interna.",
+    Agua: "muy empática y profundamente emocional."
   },
   Mono: {
-    Madera: "Ingenioso, curioso y con gran imaginación.",
-    Fuego: "Divertido, atrevido y encantador.",
-    Tierra: "Estable, confiable y realista.",
-    Metal: "Ambicioso, hábil y competitivo.",
-    Agua: "Adaptable, intuitivo y persuasivo."
+    Madera: "ingenioso y con habilidades sociales.",
+    Fuego: "divertido, carismático y dinámico.",
+    Tierra: "práctico pero imaginativo.",
+    Metal: "perspicaz y con fuerte autocontrol.",
   },
   Gallo: {
-    Madera: "Trabajador, leal y justo.",
-    Fuego: "Entusiasta, brillante y orgulloso.",
-    Tierra: "Práctico, ordenado y confiable.",
-    Metal: "Perfeccionista, franco y valiente.",
-    Agua: "Flexible, diplomático y sociable."
+    Madera: "organizado y con sentido estético.",
+    Fuego: "seguro, directo y energético.",
+    Tierra: "responsable y con buen juicio.",
+    Metal: "exigente consigo mismo y disciplinado.",
+    Agua: "observador y profundamente racional."
   },
   Perro: {
-    Madera: "Honesto, justo y con fuerte sentido del deber.",
-    Fuego: "Apasionado, leal y protector.",
-    Tierra: "Prudente, confiable y estable.",
-    Metal: "Firme, valiente y directo.",
-    Agua: "Empático, amable y sensible."
+    Madera: "leal, con fuerte sentido comunitario.",
+    Fuego: "valiente y protector.",
+    Tierra: "estable, noble y confiable.",
+    Metal: "defensor justo y muy disciplinado.",
+    Agua: "sensible y con gran capacidad de empatía."
   },
   Cerdo: {
-    Madera: "Generoso, honesto y pacífico.",
-    Fuego: "Alegre, sociable y entusiasta.",
-    Tierra: "Tranquilo, práctico y confiable.",
-    Metal: "Sincero, trabajador y decidido.",
-    Agua: "Dulce, intuitivo y emocionalmente profundo."
+    Madera: "generoso y con gran creatividad.",
+    Fuego: "apasionado y con gran corazón.",
+    Tierra: "complaciente, práctico y estable.",
+    Metal: "honesto, trabajador y determinado.",
+    Agua: "afectuoso, intuitivo y reflexivo."
   }
 };
-
-
 // Compatibilidades clásicas del zodiaco chino
 export const COMPATIBILIDAD = {
   Rata: ["Dragón 🐉", "Mono 🐒", "Buey 🐂"],
