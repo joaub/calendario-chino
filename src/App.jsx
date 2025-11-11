@@ -24,11 +24,12 @@ function App() {
   const [yearConfirmed, setYearConfirmed] = useState(null);
   const [darkMode, setDarkMode] = useDarkMode(false);
   const [name, setName] = useState("")
+  const [dateInput, setDateInput] = useState("")
   const resultRef = useRef(null);
 
 
   function getYearSexagenary(year) {
-    const base = "1564"//inicio madera rata
+    const base = 1564;//inicio madera rata
     let cicloAnimal = (year - base) % 12;
     let cicloElemento = Math.floor((year - base) % 10 / 2);
     const nextAnimalYear = year + 12;
@@ -112,7 +113,7 @@ function App() {
                   y energía del período según la astrología tradicional china.
                 </p>
               </section>
-              
+
             </div>
           )}
 
@@ -130,16 +131,19 @@ function App() {
                 : "bg-gray-100 border-gray-300"
                 }`}
             />
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col gap-2">
+              <label className="text-sm ">Seleccioná una fecha (con eso se obtiene el año):</label>
               <input
-                type="number"
-                value={yearInput}
-                onChange={(e) => setInputYear(e.target.value)}
-
-                placeholder="Ej: 2025"
-                className={`flex-1 p-2 border rounded-md 
-                focus:outline-none focus:ring focus:ring-sky-400 
-                ${darkMode ? "bg-gray-700 text-white border-gray-600" : "bg-gray-100 border-gray-300"}`}
+                type="date"
+                value={dateInput}
+                onChange={(e) => {
+                  setDateInput(e.target.value);
+                  if (e.target.value) {
+                    const y = new Date(e.target.value).getFullYear();
+                    setInputYear(y.toString());
+                  }
+                }}
+                className={`w-full p-2 rounded-md mb-3 ${darkMode ? "bg-gray-700 text-white" : "bg-gray-100"}`}
               />
 
               <button
@@ -159,11 +163,7 @@ function App() {
                 Calcular
               </button>
 
-              
             </div>
-            
-
-
 
             {yearConfirmed === null && yearInput !== "" && (
               <p className="text-sm text-red-600">
@@ -218,7 +218,7 @@ function App() {
                 </p>
               </div>
 
-              
+
               {/* 🔁 Botón Reiniciar */}
               <button
                 onClick={() => {
@@ -260,6 +260,7 @@ function App() {
               >
                 🎉 Compartir mi signo
               </button>
+              <p className='text-sm sm:text-base'>“💡 Consejo: si no podés compartir, el texto se copia automáticamente”.</p>
 
             </div>
           ) : (
@@ -268,17 +269,17 @@ function App() {
             </p>
           )}
           {/* Panel de ejemplo / galería */}
-              <aside className={`p-4 rounded-2xl shadow-lg ${darkMode ? "bg-gray-800/60" : "bg-white/80"}`}>
-                <h3 className="font-semibold mb-2">Explorá los signos</h3>
-                <div className="grid grid-cols-3 gap-3">
-                  {ANIMALES.map((a) => (
-                    <div key={a} className="p-4 rounded-lg text-center border">
-                      <div className="text-2xl">{ANIMAL_EMOJIS[a]}</div>
-                      <div className="text-sm font-semibold">{a}</div>
-                    </div>
-                  ))}
+          <aside className={`p-4 rounded-2xl shadow-lg ${darkMode ? "bg-gray-800/60" : "bg-white/80"}`}>
+            <h3 className="font-semibold mb-2">Explorá los signos</h3>
+            <div className="grid grid-cols-3 gap-3">
+              {ANIMALES.map((a) => (
+                <div key={a} className="p-4 rounded-lg text-center border">
+                  <div className="text-2xl">{ANIMAL_EMOJIS[a]}</div>
+                  <div className="text-sm font-semibold">{a}</div>
                 </div>
-              </aside>  
+              ))}
+            </div>
+          </aside>
 
           <footer className="text-center mt-12 pb-4 text-xs opacity-60">
             © 2025 Calculadora del Zodiaco Chino
