@@ -112,6 +112,7 @@ function App() {
                   y energía del período según la astrología tradicional china.
                 </p>
               </section>
+              
             </div>
           )}
 
@@ -158,7 +159,10 @@ function App() {
                 Calcular
               </button>
 
+              
             </div>
+            
+
 
 
             {yearConfirmed === null && yearInput !== "" && (
@@ -214,14 +218,7 @@ function App() {
                 </p>
               </div>
 
-              <div className="text-sm sm:text-base space-y-1">
-                <p>
-                  <strong>Elementos (orden):</strong> {ELEMENTOS.join(", ")}
-                </p>
-                <p>
-                  <strong>Animales (orden):</strong> {ANIMALES.join(", ")}
-                </p>
-              </div>
+              
               {/* 🔁 Botón Reiniciar */}
               <button
                 onClick={() => {
@@ -270,6 +267,18 @@ function App() {
               Introduce un año válido (número entero).
             </p>
           )}
+          {/* Panel de ejemplo / galería */}
+              <aside className={`p-4 rounded-2xl shadow-lg ${darkMode ? "bg-gray-800/60" : "bg-white/80"}`}>
+                <h3 className="font-semibold mb-2">Explorá los signos</h3>
+                <div className="grid grid-cols-3 gap-3">
+                  {ANIMALES.map((a) => (
+                    <div key={a} className="p-4 rounded-lg text-center border">
+                      <div className="text-2xl">{ANIMAL_EMOJIS[a]}</div>
+                      <div className="text-sm font-semibold">{a}</div>
+                    </div>
+                  ))}
+                </div>
+              </aside>  
 
           <footer className="text-center mt-12 pb-4 text-xs opacity-60">
             © 2025 Calculadora del Zodiaco Chino
