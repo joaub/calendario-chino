@@ -62,7 +62,7 @@ function App() {
 
   return (
     <>
-      <div ref={resultRef} className={`min-h-screen w-full relative bg-cover bg-center transition-all duration-500 ${darkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-black"
+      <div ref={resultRef} className={`min-h-screen w-full relative bg-cover bg-center transition-all duration-500  ${darkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-black"
         }`}
         style={{
           backgroundImage: confirmedResult
@@ -103,12 +103,12 @@ function App() {
                 : "bg-white/70 text-gray-900"
                 }`}>
                 <p className='text-sm sm:text-base italic mt-2'>
-                  El calendario chino entrelaza 12 animales y 5 elementos 
-                  —Madera, Fuego, Tierra, Metal y Agua— 
+                  El calendario chino entrelaza 12 animales y 5 elementos
+                  —Madera, Fuego, Tierra, Metal y Agua—
                   en un ciclo de 60 años que representa el fluir del tiempo y la energía del universo.
                 </p>
                 <p className='text-sm sm:text-base italic mt-2'>
-                  Cada año vibra con la esencia de un animal y la fuerza de un elemento, 
+                  Cada año vibra con la esencia de un animal y la fuerza de un elemento,
                   moldeando la personalidad y el destino según la tradición ancestral
                 </p>
               </section>
@@ -208,14 +208,32 @@ function App() {
               </p>
 
               <div className={`mt-4  rounded-lg p-3 shadow-sm border border-gray-200 ${darkMode ? "bg-gray-700 border-gray-600" : "bg-white border-gray-200"}`}>
-                <h3 className="font-semibold text-lg mb-2">compatibilidad del signo</h3>
+                <h3 className="font-semibold text-lg mb-2">compatibilidad energetica</h3>
                 <p className="text-sm sm:text-base">
-                  <strong>{confirmedResult.animal} {ANIMAL_EMOJIS[confirmedResult.animal]}</strong> Los signos más afines a tu energía son:{" "} 
+                  <strong>{confirmedResult.animal} {ANIMAL_EMOJIS[confirmedResult.animal]}</strong> Los signos más afines a tu energía son:{" "}
                   <span className="font-semibold">
                     {COMPATIBILIDAD[confirmedResult.animal].join(", ")}
                   </span>
                   {" "} Con ellos, las conexiones fluyen naturalmente y la armonía crece.
                 </p>
+              </div>
+              <div className='mt-3'>
+                <button
+                  onClick={() => {
+                    setYearConfirmed(yearConfirmed - 1);
+                  }}
+                  className="px-3 py-2 rounded-md border border-blue-500 hover:bg-blue-500 hover:scale-110  "
+                >
+                  ⬅ Año anterior
+                </button>
+                <button
+                  onClick={() => {
+                    setYearConfirmed(yearConfirmed + 1);
+                  }}
+                  className="px-3 py-2 rounded-md border border-blue-500 hover:bg-blue-500 hover:scale-110 "
+                >
+                  Año siguiente ➡
+                </button>
               </div>
 
 
@@ -239,7 +257,7 @@ function App() {
                   const shareText = `${name || "Descubrí"} su signo del Zodiaco Chino 🐉:
                   ${confirmedResult.elemento} ${confirmedResult.animal} ${ANIMAL_EMOJIS[confirmedResult.animal]}.
                     Año: ${yearConfirmed}.
-                    ¡Mirá cuál es el tuyo! 🔮`;
+                    Conocé qué energía te acompaña 🔮`;
 
                   if (navigator.share) {
                     navigator.share({
