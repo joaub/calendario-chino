@@ -102,15 +102,14 @@ function App() {
                 ? "bg-gray-800/70 text-gray-100"
                 : "bg-white/70 text-gray-900"
                 }`}>
-                <p className='text-sm sm:text-base'>
-                  El calendario chino combina un ciclo de <strong>12 animales</strong> con
-                  <strong> 5 elementos </strong> (Madera, Fuego, Tierra, Metal y Agua),
-                  formando un ciclo completo de <strong>60 años</strong> conocido como el
-                  ciclo sexagenario.
+                <p className='text-sm sm:text-base italic mt-2'>
+                  El calendario chino entrelaza 12 animales y 5 elementos 
+                  —Madera, Fuego, Tierra, Metal y Agua— 
+                  en un ciclo de 60 años que representa el fluir del tiempo y la energía del universo.
                 </p>
-                <p className='text-sm sm:text-base'>
-                  Cada año está regido por un animal y un elemento, influyendo en la personalidad
-                  y energía del período según la astrología tradicional china.
+                <p className='text-sm sm:text-base italic mt-2'>
+                  Cada año vibra con la esencia de un animal y la fuerza de un elemento, 
+                  moldeando la personalidad y el destino según la tradición ancestral
                 </p>
               </section>
 
@@ -199,7 +198,7 @@ function App() {
               )}
               <p className=" italic">{confirmedResult.animal}{" "}
                 {DESCRIPCIONES_ANIMALES[confirmedResult.animal]} Este signo bajo el
-                elemento <strong>{confirmedResult.elemento}</strong> {DESCRIPCIONES_ELEMENTOS[confirmedResult.elemento]}
+                elemento <strong>{confirmedResult.elemento}</strong>, {DESCRIPCIONES_ELEMENTOS[confirmedResult.elemento]}
               </p>
               <p>
                 🔮 El próximo año del {confirmedResult.animal} será <strong>{confirmedResult.nextAnimalYear}</strong>.
@@ -211,10 +210,11 @@ function App() {
               <div className={`mt-4  rounded-lg p-3 shadow-sm border border-gray-200 ${darkMode ? "bg-gray-700 border-gray-600" : "bg-white border-gray-200"}`}>
                 <h3 className="font-semibold text-lg mb-2">compatibilidad del signo</h3>
                 <p className="text-sm sm:text-base">
-                  Los signos más compatibles con el <strong>{confirmedResult.animal} {ANIMAL_EMOJIS[confirmedResult.animal]}</strong> son:{" "}
+                  <strong>{confirmedResult.animal} {ANIMAL_EMOJIS[confirmedResult.animal]}</strong> Los signos más afines a tu energía son:{" "} 
                   <span className="font-semibold">
                     {COMPATIBILIDAD[confirmedResult.animal].join(", ")}
                   </span>
+                  {" "} Con ellos, las conexiones fluyen naturalmente y la armonía crece.
                 </p>
               </div>
 
