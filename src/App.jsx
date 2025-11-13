@@ -4,7 +4,7 @@ import {
   ELEMENTO_COLORS, ELEMENTO_BORDERS,
   ELEMENTO_BACKGROUNDS, ANIMALES,
   ANIMAL_EMOJIS, DESCRIPCIONES_ANIMALES,
-  SIGN_DESCRIPTIONS, COMPATIBILIDAD
+  SIGN_DESCRIPTIONS, COMPATIBILIDAD, SIGNIFICADOS
 } from './descripciones.js';
 
 function useDarkMode(defaultValue = false) {
@@ -27,6 +27,7 @@ function App() {
   const [dateInput, setDateInput] = useState("")
   const resultRef = useRef(null);
   const [mensaje, setMensaje] = useState("");
+  const [signoSeleccionado, setSignoSeleccionado] = useState(null);
 
 
   function getYearSexagenary(year) {
@@ -271,50 +272,61 @@ function App() {
                 🔁 Reiniciar
               </button>
               {/* 🎉 Botón para compartir */}
-              
-                <button
-                  onClick={() => compartir("Texto a compartir")}
-                  className="bg-sky-600 text-white px-4 py-2 rounded-md hover:scale-105 hover:bg-sky-700 "
-                >
-                  🎉 Compartir mi signo
-                </button>
 
-                {mensaje && (
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg transition-all duration-500">
-                    {mensaje}
-                  </div>
-                )}
-                <p className='text-sm sm:text-base'>“💡 Consejo: si no podés compartir, el texto se copia automáticamente”.</p>
+              <button
+                onClick={() => compartir("Texto a compartir")}
+                className="bg-sky-600 text-white px-4 py-2 rounded-md hover:scale-105 hover:bg-sky-700 "
+              >
+                🎉 Compartir mi signo
+              </button>
 
-              </div>
-              ) : (
-              <p className="text-center  mt-6 px-4">
-                Introduce un año válido (número entero).
-              </p>
-          )}
-              {/* Panel de ejemplo / galería */}
-              <aside className={`p-4 rounded-2xl shadow-lg ${darkMode ? "bg-gray-800/60" : "bg-white/80"}`}>
-                <h3 className="font-semibold mb-2">Explorá los signos</h3>
-                <div className="grid grid-cols-3 gap-3">
-                  {ANIMALES.map((a) => (
-                    <div key={a} className="p-4 rounded-lg text-center border">
-                      <div className="text-2xl">{ANIMAL_EMOJIS[a]}</div>
-                      <div className="text-sm font-semibold">{a}</div>
-                    </div>
-                  ))}
+              {mensaje && (
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg transition-all duration-500">
+                  {mensaje}
                 </div>
-              </aside>
-
-              <footer className="text-center mt-12 pb-4 text-xs opacity-60">
-                © 2025 Calculadora del Zodiaco Chino
-              </footer>
+              )}
+              <p className='text-sm sm:text-base'>“💡 Consejo: si no podés compartir, el texto se copia automáticamente”.</p>
 
             </div>
+          ) : (
+            <p className="text-center  mt-6 px-4">
+              Introduce un año válido (número entero).
+            </p>
+          )}
+          {/* Panel de ejemplo / galería */}
+          <aside className={`p-4 rounded-2xl shadow-lg ${darkMode ? "bg-gray-800/60" : "bg-white/80"}`}>
+            <h3 className="font-semibold mb-2">Explorá los signos</h3>
+            <div className="grid grid-cols-3 gap-3">
+              {ANIMALES.map((a) => (
+                <div
+                  key={a}
+                  onClick={() => setSignoSeleccionado(a)}
+                  className={`p-3 rounded-xl border text-center cursor-pointer transition-all 
+                    hover:scale-105 hover:shadow-md ${signoSeleccionado === a
+                      ? "ring-2 ring-yellow-400"
+                      : darkMode
+                        ? "bg-gray-700/70 border-gray-600 hover:bg-gray-600/70"
+                        : "bg-white border-gray-300 hover:bg-gray-100"
+                    }`}
+                >
+                  <div className="text-2xl">{ANIMAL_EMOJIS[a]}</div>
+                  <div className="text-sm font-semibold">{a}</div>
+
+                </div>
+              ))}
+            </div>
+          </aside>
+
+          <footer className="text-center mt-12 pb-4 text-xs opacity-60">
+            © 2025 Calculadora del Zodiaco Chino
+          </footer>
+
+        </div>
 
       </div>
 
-      </>
-      )
+    </>
+  )
 }
 
-      export default App
+export default App

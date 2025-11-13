@@ -79,6 +79,21 @@ export const DESCRIPCIONES_ANIMALES = {
   Cerdo: "Generoso, honesto y amable, disfruta de la vida con serenidad y gratitud.",
 };
 
+export const SIGNIFICADOS = {
+  Rata: "Inteligente y adaptable",
+  Buey: "Paciente y trabajador",
+  Tigre: "Valiente y apasionado",
+  Conejo: "Amable y sensible",
+  Dragón: "Fuerte y carismático",
+  Serpiente: "Sabia y misteriosa",
+  Caballo: "Libre y enérgico",
+  Cabra: "Creativa y compasiva",
+  Mono: "Ingenioso y divertido",
+  Gallo: "Organizado y confiable",
+  Perro: "Leal y protector",
+  Cerdo: "Generoso y sincero",
+};
+
 // Descripciones combinadas de signos y elementos
 
 export const SIGN_DESCRIPTIONS = {
