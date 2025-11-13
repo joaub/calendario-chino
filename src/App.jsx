@@ -26,6 +26,7 @@ function App() {
   const [name, setName] = useState("")
   const [dateInput, setDateInput] = useState("")
   const resultRef = useRef(null);
+  const [mensaje, setMensaje] = useState("");
 
 
   function getYearSexagenary(year) {
@@ -60,6 +61,23 @@ function App() {
       : "";
 
 
+  const compartir = (shareText) => {
+    if (navigator.share) {
+      navigator.share({
+        title: "Zodiaco Chino 2025",
+        text: shareText,
+        url: window.location.href,
+      });
+    } else {
+      navigator.clipboard.writeText(shareText);
+      setMensaje("📋 Tu signo fue copiado al portapapeles ✅");
+
+      // ocultar después de 3 segundos
+      setTimeout(() => setMensaje(""), 3000);
+    }
+  };
+
+
   return (
     <>
       <div ref={resultRef} className={`min-h-screen w-full relative bg-cover bg-center transition-all duration-500  ${darkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-black"
@@ -89,9 +107,10 @@ function App() {
 
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className={`absolute top-2 right-4 px-3 py-1 rounded-md text-sm font-semibold bg-gray-200 hover:bg-gray-300 transition ${darkMode
-              ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
-              : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+            className={`absolute top-2 right-4 px-3 py-1 rounded-md text-sm font-semibold
+              bg-gray-200 hover:bg-gray-300 hover:scale-105 transition ${darkMode
+                ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
+                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
               }`}
           >
             {darkMode ? "☀️ Claro" : "🌙 Oscuro"}
@@ -157,7 +176,7 @@ function App() {
                     setYearConfirmed(null);
                   }
                 }}
-                className="px-4 py-2 bg-sky-600 rounded-md hover:bg-sky-700 transition cursor-pointer"
+                className="px-4 py-2 bg-sky-600 rounded-md hover:bg-sky-700 transition cursor-pointer hover:scale-105 hover:font-bold"
               >
                 Calcular
               </button>
@@ -244,7 +263,7 @@ function App() {
                   setInputYear("");
                   setName("");
                 }}
-                className={`mt-5 px-4 py-2 rounded-md font-semibold transition 
+                className={`mt-5 px-4 py-2 rounded-md font-semibold transition border hover:scale-105
                     ${darkMode
                     ? "bg-gray-700 hover:bg-gray-600 text-gray-100"
                     : "bg-gray-200 hover:bg-gray-300 text-gray-800"}`}
@@ -252,63 +271,50 @@ function App() {
                 🔁 Reiniciar
               </button>
               {/* 🎉 Botón para compartir */}
-              <button
-                onClick={() => {
-                  const shareText = `${name || "Descubrí"} su signo del Zodiaco Chino 🐉:
-                  ${confirmedResult.elemento} ${confirmedResult.animal} ${ANIMAL_EMOJIS[confirmedResult.animal]}.
-                    Año: ${yearConfirmed}.
-                    Conocé qué energía te acompaña 🔮`;
+              
+                <button
+                  onClick={() => compartir("Texto a compartir")}
+                  className="bg-sky-600 text-white px-4 py-2 rounded-md hover:scale-105 hover:bg-sky-700 "
+                >
+                  🎉 Compartir mi signo
+                </button>
 
-                  if (navigator.share) {
-                    navigator.share({
-                      title: "Zodiaco Chino 2025",
-                      text: shareText,
-                      url: window.location.href,
-                    });
-                  } else {
-                    navigator.clipboard.writeText(shareText);
-                    alert("📋 Tu signo fue copiado al portapapeles. ¡Pegalo y compartilo!");
-                  }
-                }}
-                className={`mt-3 px-4 py-2 rounded-md font-semibold transition
-                  ${darkMode
-                    ? "bg-sky-700 hover:bg-sky-600 text-gray-100"
-                    : "bg-sky-500 hover:bg-sky-600 text-white"
-                  }`}
-              >
-                🎉 Compartir mi signo
-              </button>
-              <p className='text-sm sm:text-base'>“💡 Consejo: si no podés compartir, el texto se copia automáticamente”.</p>
+                {mensaje && (
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg transition-all duration-500">
+                    {mensaje}
+                  </div>
+                )}
+                <p className='text-sm sm:text-base'>“💡 Consejo: si no podés compartir, el texto se copia automáticamente”.</p>
 
-            </div>
-          ) : (
-            <p className="text-center  mt-6 px-4">
-              Introduce un año válido (número entero).
-            </p>
+              </div>
+              ) : (
+              <p className="text-center  mt-6 px-4">
+                Introduce un año válido (número entero).
+              </p>
           )}
-          {/* Panel de ejemplo / galería */}
-          <aside className={`p-4 rounded-2xl shadow-lg ${darkMode ? "bg-gray-800/60" : "bg-white/80"}`}>
-            <h3 className="font-semibold mb-2">Explorá los signos</h3>
-            <div className="grid grid-cols-3 gap-3">
-              {ANIMALES.map((a) => (
-                <div key={a} className="p-4 rounded-lg text-center border">
-                  <div className="text-2xl">{ANIMAL_EMOJIS[a]}</div>
-                  <div className="text-sm font-semibold">{a}</div>
+              {/* Panel de ejemplo / galería */}
+              <aside className={`p-4 rounded-2xl shadow-lg ${darkMode ? "bg-gray-800/60" : "bg-white/80"}`}>
+                <h3 className="font-semibold mb-2">Explorá los signos</h3>
+                <div className="grid grid-cols-3 gap-3">
+                  {ANIMALES.map((a) => (
+                    <div key={a} className="p-4 rounded-lg text-center border">
+                      <div className="text-2xl">{ANIMAL_EMOJIS[a]}</div>
+                      <div className="text-sm font-semibold">{a}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </aside>
+
+              <footer className="text-center mt-12 pb-4 text-xs opacity-60">
+                © 2025 Calculadora del Zodiaco Chino
+              </footer>
+
             </div>
-          </aside>
 
-          <footer className="text-center mt-12 pb-4 text-xs opacity-60">
-            © 2025 Calculadora del Zodiaco Chino
-          </footer>
+      </div>
 
-        </div>
-
-      </div >
-
-    </>
-  )
+      </>
+      )
 }
 
-export default App
+      export default App
