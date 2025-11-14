@@ -296,6 +296,19 @@ function App() {
           {/* Panel de ejemplo / galería */}
           <aside className={`p-4 rounded-2xl shadow-lg ${darkMode ? "bg-gray-800/60" : "bg-white/80"}`}>
             <h3 className="font-semibold mb-2">Explorá los signos</h3>
+            {signoSeleccionado && (
+              <div
+                className={`mt-4 p-4 rounded-xl border text-center transition-all ${darkMode
+                    ? "bg-gray-700/70 border-gray-600"
+                    : "bg-white border-gray-300"
+                  }`}
+              >
+                <h4 className="font-bold text-lg mb-1 flex items-center justify-center gap-2">
+                  {ANIMAL_EMOJIS[signoSeleccionado]} {signoSeleccionado}
+                </h4>
+                <p className="text-sm opacity-80">{SIGNIFICADOS[signoSeleccionado]}</p>
+              </div>
+            )}
             <div className="grid grid-cols-3 gap-3">
               {ANIMALES.map((a) => (
                 <div
@@ -315,6 +328,7 @@ function App() {
                 </div>
               ))}
             </div>
+            
           </aside>
 
           <footer className="text-center mt-12 pb-4 text-xs opacity-60">
