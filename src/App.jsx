@@ -28,7 +28,7 @@ function App() {
   const resultRef = useRef(null);
   const [mensaje, setMensaje] = useState("");
   const [signoSeleccionado, setSignoSeleccionado] = useState(null);
-
+  
 
   function getYearSexagenary(year) {
     const base = 1564;//inicio madera rata
