@@ -1,12 +1,34 @@
-# React + Vite
+# 🐉 Calendario Chino – Ciclo Sexagenario
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web que permite calcular el signo y elemento del calendario chino según el año ingresado, basada en el ciclo sexagenario (Animales y Elementos).
 
-Currently, two official plugins are available:
+## 🚀 Demo
+👉 https://calendario-chino.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tecnologías
+- JavaScript (ES6+)
+- HTML5
+- Tailwind
+- React 
 
-## Expanding the ESLint configuration
+## ⚙️ Funcionalidades
+- Cálculo del signo del zodiaco chino
+- Determinación del elemento (madera, fuego, tierra, metal, agua)
+- Implementación del ciclo sexagenario (60 combinaciones)
+- Interfaz interactiva y dinámica
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧠 Lógica del proyecto
+El ciclo sexagenario se basa en la combinación de:
+- 5 elementos (madera, fuego, tierra, metal, agua) en este caso sin sus formas yin-yang
+- 12 animales del zodiaco chino (ramas terrestres)s
+
+Estas combinaciones generan un ciclo de 60 años.
+
+La aplicación calcula:
+- La posición del año dentro del ciclo
+- Su correspondiente combinación de tronco + rama
+- El animal y elemento asociado
+
+## 📸 Capturas
+![imagen elemento fuego ](./public/acch.png)
+
